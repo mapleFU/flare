@@ -23,22 +23,6 @@ if ! is_git_lfs_pulled; then
   _error_exit "This repository need GIT LFS, see README.md"
 fi
 
-if [ ! -f $PYTHON_BIN ]; then
-  mkdir -p $BLADE_BOOST_DIR
-  cd $BLADE_BOOST_DIR
-  if [ ! -d Python-2.7.3 ]; then
-    cp $BLADE_DIR/Python-2.7.3.tgz .
-    tar -xf Python-2.7.3.tgz
-  fi
-
-  cd Python-2.7.3
-  echo 'Boosting Python, please wait...'
-  CC=/usr/bin/gcc CXX=/usr/bin/g++ CFLAGS=-w ./configure --prefix=$BLADE_BOOST_DIR > $BLADE_BOOST_DIR/boosting.log
-  make  >> $BLADE_BOOST_DIR/boosting.log
-  make install >> $BLADE_BOOST_DIR/boosting.log
-  cd $OLD_PWD
-fi
-
 # Copy ninja
 if [[ ! -f $BLADE_BOOST_DIR/bin/ninja ]]; then
   cp $BLADE_DIR/ninja $BLADE_BOOST_DIR/bin
