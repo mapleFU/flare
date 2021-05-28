@@ -6,8 +6,9 @@
 OLD_PWD=`pwd`
 BLADE_DIR="$blade_dir"
 BLADE_BOOST_DIR=~/.blade_boost
-PYTHON_BIN=$BLADE_BOOST_DIR/bin/python2.7
 MOTD=/etc/motd
+
+mkdir -p $BLADE_BOOST_DIR/bin
 
 is_git_lfs_pulled() {
   local zipfile="$BLADE_DIR/blade.zip"
